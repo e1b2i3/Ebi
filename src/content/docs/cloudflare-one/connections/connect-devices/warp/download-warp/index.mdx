@@ -1,0 +1,115 @@
+---
+pcx_content_type: reference
+title: Download WARP
+sidebar:
+  order: 2
+---
+
+import { Render, Details, WARPReleases } from "~/components";
+
+You can download the WARP client from [Zero Trust](https://one.dash.cloudflare.com/) under **Settings** > **Resources** > **Download the WARP client**.
+
+Alternatively, download the client from one of the following links after checking requirements.
+
+## Windows
+
+<Render file="warp/system-requirements/windows" />
+
+### Stable releases
+
+<WARPReleases />
+
+**[Alternate download link](https://one.one.one.one)**
+
+### Beta releases
+
+Cloudflare tests new WARP features and improvements in an unstable beta release before adding them to the stable release. To get early access to new features, download the latest beta client.
+
+<WARPReleases />
+
+## macOS
+
+<Render file="warp/system-requirements/macos" />
+
+### Stable releases
+
+<WARPReleases />
+
+### Beta releases
+
+Cloudflare tests new WARP features and improvements in an unstable beta release before adding them to the stable release. To get early access to new features, download the latest beta client.
+
+<Details header="Download latest release">
+
+**Download**
+
+[macOS 2024.11.688.1]() **Date**: December 5, 2024 **Size**: 81.33 MB
+
+**Release notes**
+
+This release contains minor fixes and improvements.
+
+		- **Changes and improvements**:
+				- Consumers can now set the tunnel protocol using `warp-cli tunnel protocol set <protocol>`.
+				- Extended diagnostics collection time in `warp-diag` to ensure logs are captured reliably.
+				- Improved captive portal support by disabling the firewall during captive portal login flows.
+				- Improved reliability of connection establishment logic under degraded network conditions.
+				- Improved reconnection speed when a Cloudflare server is in a degraded state.
+				- Improved captive portal detection on certain public networks.
+				- Fixed an issue where admin override displayed an incorrect override end time.
+				- Reduced connectivity interruptions on WireGuard include split tunnel configurations.
+		- **Known issues**:
+				- macOS Sequoia: Due to changes Apple introduced in macOS 15.0.x, the WARP client may not behave as expected. Cloudflare recommends the use of macOS 15.1 or later.
+
+</Details>
+
+<Details header="Previous version history (2)">
+	<Details header="macOS 2024.10.537.1">
+	</Details>
+	<Details header="macOS 2024.10.279.1">
+	</Details>
+</Details>
+
+## Linux
+
+<Render file="warp/system-requirements/linux" />
+
+### Stable releases
+
+**[Package repository](https://pkg.cloudflareclient.com/)**
+
+### Beta releases
+
+## iOS
+
+|                |         |
+| -------------- | ------- |
+| **OS version** | iOS 11+ |
+
+[Download from the iOS App Store](https://apps.apple.com/us/app/cloudflare-one-agent/id6443476492) or search for "Cloudflare One Agent".
+
+:::note[Migrate from 1.1.1.1]
+
+The legacy iOS client, [1.1.1.1: Faster Internet](https://apps.apple.com/us/app/1-1-1-1-faster-internet/id1423538627), has been replaced by the Cloudflare One Agent. Learn more in our [migration guide](/cloudflare-one/connections/connect-devices/warp/download-warp/cloudflare-one-agent-migration/).
+:::
+
+## Android
+
+|                |      |
+| -------------- | ---- |
+| **OS version** | 5.0+ |
+
+[Download from the Google Play store](https://play.google.com/store/apps/details?id=com.cloudflare.cloudflareoneagent) or search for "Cloudflare One Agent".
+
+:::note[Migrate from 1.1.1.1]
+
+The legacy Android client, [1.1.1.1 + WARP: Safer Internet](https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone), has been replaced by the Cloudflare One Agent. Learn more in our [migration guide](/cloudflare-one/connections/connect-devices/warp/download-warp/cloudflare-one-agent-migration/).
+:::
+
+## ChromeOS
+
+|                |                                     |
+| -------------- | ----------------------------------- |
+| **OS version** | Chromebooks manufactured after 2019 |
+
+Chromebooks are supported by our [Android app](#android). All Chromebooks made after 2019 should fully support our Android app. If you have a Chromebook made before 2019, [refer to this list](https://www.chromium.org/chromium-os/chrome-os-systems-supporting-android-apps/) to verify that your device is supported.
