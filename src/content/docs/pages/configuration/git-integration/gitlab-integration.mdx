@@ -1,0 +1,63 @@
+---
+pcx_content_type: concept
+title: GitLab integration
+---
+
+Cloudflare supports connecting Cloudflare Pages to your GitLab repositories, and will automatically deploy your code everytime you push a change to a branch.
+
+## Features
+
+Beyond automatic deployments, the Cloudflare GitLab integration lets you monitor, manage, and preview deployments directly in GitLab, keeping you informed without leaving your workflow.
+
+### Custom branches
+
+Suppose you have a custom Git workflow that uses specific branches to represent your project's production build. In that case, you can specify a custom branch when creating (or managing an existing) project in the Pages dashboard by going to **Settings** > **Builds & deployments** > **Configure Production deployments**. To change the production branch, click the **production branch** dropdown menu and choose any other branch.
+
+You can also use [preview deployments](/pages/configuration/preview-deployments/) to preview how the new version of your project looks before merging into `production`. In addition, Pages allows you to configure which of your preview branches are built and deployed by using [branch build controls](/pages/configuration/branch-build-controls/).
+
+To configure this in your Pages project go to **Settings** > **Builds & deployments** > **Configure preview deployment** and select **Custom branches**. Here you can specify branches you wish to include and exclude from automatic deployments in the provided configuration fields. To learn more refer to the [branch build controls](/pages/configuration/branch-build-controls/) documentation.
+
+### Skipping a specific build via a commit message
+
+Without any configuration required, you can choose to skip a deployment on an adhoc basis. By adding the `[CI Skip]`, `[CI-Skip]`, `[Skip CI]`, `[Skip-CI]`, or `[CF-Pages-Skip]` flag as a prefix in your commit message, and Pages will omit that deployment. The prefixes are not case sensitive.
+
+### Check runs and preview URLs
+
+If you have one or multiple projects connected to a repository (i.e. a [monorepo](/workers/ci-cd/builds/advanced-setups/#monorepos)), you can check on the status of each build within GitLab via [GitLab commit status](https://docs.gitlab.com/ee/user/project/merge_requests/status_checks.html).
+
+You can see the statuses by selecting on the status icon next to a commit or by going to **Build** > **Pipelines** within your GitLab repository. In the example below, you can select the green check mark to see the results of the check run.
+
+![GitLab Status](~/assets/images/workers/platform/ci-cd/gl-status-checks.png)
+
+Check runs will appear like the following in your repository. You can click on one of the statuses to view the [preview URL](/pages/configuration/preview-deployments/) for that deployment.
+
+![GitLab Commit Status](~/assets/images/pages/configuration/glcommitstatus.png)
+
+If a build skips for any reason (i.e. CI Skip, build watch paths, or branch deployment controls), the check run/commit status will not appear.
+
+## Managing Access
+
+You can deploy projects to Cloudflare Workers from your open-source team, company, or side project on GitLab using the Cloudflare Pages app.
+
+### Organizational access
+
+You can deploy projects to Cloudflare Pages from your open-source team, company, or side project on both GitHub and GitLab.
+
+By authorizing Cloudflare Pages to access your GitLab account, you will automatically allow access to organizations, groups, and namespaces your GitLab account can access for use by Cloudflare Pages. Managing access to these organizations and groups is handled by GitLab.
+
+### Removing access
+
+You can remove Cloudflare Workers' access to your GitLab account by navigating to [Authorized Applications page](https://gitlab.com/-/profile/applications) on GitLab. Find the applications called Cloudflare Pages and select the **Revoke** button to revoke access.
+
+Note that the GitLab application Cloudflare Pages is shared between Workers and Pages projects, and removing access to GitLab will disable new builds for Workers and Pages, though the last build of your site will continue to be hosted via Cloudflare Pages.
+
+### Reinstall a Git installation
+
+When encountering Git integration related issues, one potential troubleshooting step is attempting to uninstall and reinstall the GitHub or GitLab application associated with the Cloudflare Pages installation. The process for each Git provider is provided below.
+
+1. Go to your application settings page on GitLab located here: [https://gitlab.com/-/profile/applications](https://gitlab.com/-/profile/applications)
+2. Click the "Revoke" button on your Cloudflare Pages installation if it exists.
+3. Go back to the **Workers & Pages** overview page at `https://dash.cloudflare.com/[YOUR_ACCOUNT_ID]/workers-and-pages`. Click **Create application** > **Pages** > **Connect to Git**
+4. Select the **GitLab** tab at the top, click the **+ Add account** button, click the GitLab account you want to add, and then click **Authorize** on the modal titled "Authorize Cloudflare Pages to use your account?".
+5. You will be redirected to the create project page with your GitLab account or organization in the account list.
+6. Attempt to make a new deployment with your project which was previously broken.
